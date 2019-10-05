@@ -52,9 +52,9 @@
                         <a class="button is-primary">
                             <strong>Sign up</strong>
                         </a>
-                        <a class="button is-light">
+                        <nuxt-link :to="{ name: 'auth-signin' }" class="button is-light">
                             Log in
-                        </a>
+                        </nuxt-link>
                     </div>
                 </div>
             </div>
