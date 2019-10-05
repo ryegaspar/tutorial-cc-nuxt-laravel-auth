@@ -64,7 +64,7 @@
                     <a href="#" class="navbar-link">{{ user.name }}</a>
 
                     <div class="navbar-dropdown">
-                        <a href="#" class="navbar-item">
+                        <a href="#" class="navbar-item" @click.prevent="logout">
                             Logout
                         </a>
                     </div>
@@ -84,4 +84,11 @@
 	//         })
 	//     }
 	// } ** instead of this use global mixins
+    export default {
+    	methods: {
+    		logout() {
+    			this.$auth.logout();
+            }
+        }
+    }
 </script>
