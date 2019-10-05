@@ -26,7 +26,9 @@ export default {
     /*
     ** Plugins to load before mounting the App
     */
-    plugins: [],
+    plugins: [
+        './plugins/mixins/user'
+    ],
     /*
     ** Nuxt.js dev-modules
     */

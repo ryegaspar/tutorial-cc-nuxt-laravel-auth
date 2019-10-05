@@ -1,9 +1,9 @@
 <template>
     <nav class="navbar" role="navigation" aria-label="main navigation">
         <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
+            <nuxt-link class="navbar-item" :to="{ name: 'index' }">
                 <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-            </a>
+            </nuxt-link>
 
             <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
                data-target="navbarBasicExample">
@@ -11,6 +11,7 @@
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </a>
+
         </div>
 
         <div id="navbarBasicExample" class="navbar-menu">
@@ -47,17 +48,40 @@
             </div>
 
             <div class="navbar-end">
-                <div class="navbar-item">
+                <div class="navbar-item" v-if="!authenticated">
                     <div class="buttons">
-                        <a class="button is-primary">
+                        <nuxt-link :to="{ name: 'auth-signup' }" class="button is-primary">
+                            <!-- in nuxt, auth-signup references to auth/signup in pages-->
                             <strong>Sign up</strong>
-                        </a>
+                        </nuxt-link>
                         <nuxt-link :to="{ name: 'auth-signin' }" class="button is-light">
                             Log in
                         </nuxt-link>
+                    </div>
+                </div>
+
+                <div v-else class="navbar-item has-dropdown is-hoverable">
+                    <a href="#" class="navbar-link">{{ user.name }}</a>
+
+                    <div class="navbar-dropdown">
+                        <a href="#" class="navbar-item">
+                            Logout
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
 </template>
+
+<script>
+	// import { mapGetters } from 'vuex';
+	//
+	// export default {
+	// 	computed: {
+	// 		...mapGetters({
+	//             loggedIn: 'auth/loggedIn'
+	//         })
+	//     }
+	// } ** instead of this use global mixins
+</script>
