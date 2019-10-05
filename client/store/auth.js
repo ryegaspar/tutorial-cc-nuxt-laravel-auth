@@ -10,5 +10,6 @@ export const getters = {
 };
 
 export const state = () => ({
-   loggedIn: false
+   loggedIn: false,
+    strategy: "local"
 });

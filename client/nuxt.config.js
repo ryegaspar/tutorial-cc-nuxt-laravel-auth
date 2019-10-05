@@ -54,22 +54,28 @@ export default {
     },
 
     auth: {
-        endpoints: {
-            login: {
-                url: 'login', method: 'post', propertyName: 'meta.token'
-            },
-            user: {
-                url: 'me', method: 'get', propertyName: 'data'
-            },
-            logout: {
-                url: 'logout', method: 'post'
+        strategies: {
+            local: {
+                endpoints: {
+                    login: {
+                        url: 'login', method: 'post', propertyName: 'meta.token'
+                    },
+                    user: {
+                        url: 'me', method: 'get', propertyName: 'data'
+                    },
+                    logout: {
+                        url: 'logout', method: 'post'
+                    }
+                },
             }
         },
 
         redirect: {
             login: '/auth/signin',
             home: '/'
-        }
+        },
+
+        rewriteRedirects: true
     },
     /*
     ** Build configuration

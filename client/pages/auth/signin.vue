@@ -63,7 +63,7 @@
 					});
 
 					this.$router.push({
-						path: '/'
+						path: this.$route.query.redirect || '/'
 					});
 
 				} catch (err) {
