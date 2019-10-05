@@ -26,8 +26,16 @@ export default {
     /*
     ** Plugins to load before mounting the App
     */
+    router: {
+        middleware: [
+            'clearValidationErrors'
+        ]
+    },
+
     plugins: [
-        './plugins/mixins/user'
+        './plugins/mixins/user',
+        './plugins/mixins/validation',
+        './plugins/axios'
     ],
     /*
     ** Nuxt.js dev-modules
@@ -46,15 +54,19 @@ export default {
     },
 
     auth: {
-        endpoints: {
-            login: {
-                url: 'login', method: 'post', propertyName: 'meta.token'
-            },
-            user: {
-                url: 'me', method: 'get', propertyName: 'data'
-            },
-            logout: {
-                url: 'logout', method: 'post'
+        strategies: {
+            local: {
+                endpoints: {
+                    login: {
+                        url: 'login', method: 'post', propertyName: 'meta.token'
+                    },
+                    user: {
+                        url: 'me', method: 'get', propertyName: 'data'
+                    },
+                    logout: {
+                        url: 'logout', method: 'post'
+                    }
+                }
             }
         }
     },

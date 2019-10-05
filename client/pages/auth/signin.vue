@@ -14,7 +14,10 @@
                                            id="email"
                                            placeholder="e.g. john@example.com"
                                            autofocus=""
-                                           v-model="form.email">
+                                           v-model="form.email"
+                                           :class="{ 'is-danger' : errors.email }"
+                                    >
+                                    <p class="help is-danger" v-if="errors.email">{{ errors.email[0] }}</p>
                                 </div>
                             </div>
 
@@ -25,7 +28,9 @@
                                            type="password"
                                            id="password"
                                            v-model="form.password"
+                                           :class="{ 'is-danger' : errors.password }"
                                     >
+                                    <p class="help is-danger" v-if="errors.password">{{ errors.password[0] }}</p>
                                 </div>
                             </div>
                             <button class="button is-block is-info is-large is-fullwidth">Login</button>
@@ -38,26 +43,31 @@
 </template>
 
 <script>
-    export default {
-    	data() {
-    		return {
-    			form: {
-    				email: '',
-                    password: '',
-                }
-            }
-        },
+	export default {
+		data() {
+			return {
+				form: {
+					email: '',
+					password: '',
+				}
+			}
+		},
 
-        methods: {
-    		async submit() {
-    			await this.$auth.login({
-                    data: this.form
-                });
+		methods: {
+			async submit() {
+				try { //wrap it with try catch or nuxt will force you a 422 error page.
+					await this.$auth.login({
+						data: this.form
+					});
 
-    			this.$router.push({
-                    path: '/'
-                });
-            }
-        }
-    }
+					this.$router.push({
+						path: '/'
+					});
+
+				} catch (err) {
+
+				}
+			}
+		}
+	}
 </script>
